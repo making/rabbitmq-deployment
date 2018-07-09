@@ -1,0 +1,33 @@
+---
+- type: replace
+  path: /instance_groups/name=rabbitmq-server/jobs/name=rabbitmq-server/properties?/rabbitmq-server/ssl?
+  value:
+    enabled: true
+    key: "((rabbitmq-tls.private_key))"
+    cert: "((rabbitmq-tls.certificate))"
+    cacert: "((rabbitmq-tls.ca))"
+    versions:
+      - "tlsv1.2"
+      - "tlsv1.1"
+    verify: false
+    verification_depth: 5
+    fail_if_no_peer_cert: false
+
+- type: replace
+  path: /variables?/-
+  value:
+    name: rabbitmq-ca
+    type: certificate
+    options:
+      is_ca: true
+      common_name: rabbitmq-ca
+
+- type: replace
+  path: /variables?/-
+  value:
+    name: rabbitmq-tls
+    type: certificate
+    options:
+      ca: rabbitmq-ca
+      common_name: ((tls.common_name))
+      alternative_names: ((tls.alternative_names))

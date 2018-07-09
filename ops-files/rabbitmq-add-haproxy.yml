@@ -1,0 +1,14 @@
+- type: replace
+  path: /instance_groups/0:before
+  value:
+    name: haproxy
+    instances: 1
+    jobs:
+    - name: rabbitmq-haproxy
+      release: cf-rabbitmq
+    vm_type: default
+    stemcell: trusty
+    networks:
+    - name: default
+    azs:
+    - z1

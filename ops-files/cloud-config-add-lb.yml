@@ -1,0 +1,7 @@
+- type: replace
+  path: /vm_extensions?/-
+  value:
+    name: rabbitmq-lb
+    cloud_properties:
+      elbs:
+      - ((rabbitmq_lb_name))

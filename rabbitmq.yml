@@ -1,0 +1,68 @@
+---
+name: rabbitmq
+
+releases:
+- name: "cf-rabbitmq"
+  version: "249.0.0"
+  url: "https://bosh.io/d/github.com/pivotal-cf/cf-rabbitmq-release?v=249.0.0"
+  sha1: "89a3b1276a2ff354b69368c7de65a121b223ecf4"
+
+stemcells:
+- alias: trusty
+  os: ubuntu-trusty
+  version: latest
+
+instance_groups:
+- name: rabbitmq-server
+  instances: 3
+  jobs:
+  - name: rabbitmq-server
+    release: cf-rabbitmq
+    properties:
+      rabbitmq-server:
+        version: 3.7
+        plugins:
+        - rabbitmq_management
+        - rabbitmq_mqtt
+        - rabbitmq_stomp
+        ports: # http://docs.pivotal.io/rabbitmq-cf/1-12/install-config-pp.html#port-to-protocol-mappings
+        - 5672 # RabbitMQ
+        - 5671 # RabbitMQ SSL
+        - 1883 # MQTT
+        - 8883 # MQTT SSL
+        - 61613 # STOMP
+        - 61614 # STOMP SSL
+        - 15672 # Management dashboard
+        - 15674 # Web STOMP
+        disk_alarm_threshold: "{mem_relative,0.4}"
+        administrators:
+          management:
+            username: admin
+            password: ((rabbitmq-management-password))
+          broker:
+            username: broker
+            password: ((rabbitmq-broker-password))
+        cookie: ((rabbitmq-cookie))
+  vm_type: default
+  stemcell: trusty
+  persistent_disk_type: 10GB
+  networks:
+  - name: default
+  azs:
+  - z1
+  - z2
+  - z3
+
+variables:
+- name: rabbitmq-management-password
+  type: password
+- name: rabbitmq-broker-password
+  type: password
+- name: rabbitmq-cookie
+  type: password
+update:
+  canaries: 1
+  canary_watch_time: 30000-180000
+  update_watch_time: 30000-180000
+  max_in_flight: 1
+  serial: false
