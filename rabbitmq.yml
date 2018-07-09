@@ -45,7 +45,7 @@ instance_groups:
         cookie: ((rabbitmq-cookie))
   vm_type: ((rabbitmq_vm_type))
   stemcell: trusty
-  persistent_disk_type: 10GB
+  persistent_disk_type: ((rabbitmq_disk_type))
   networks:
   - name: default
   azs:
