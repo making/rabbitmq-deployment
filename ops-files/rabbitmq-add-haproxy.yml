@@ -6,7 +6,7 @@
     jobs:
     - name: rabbitmq-haproxy
       release: cf-rabbitmq
-    vm_type: default
+    vm_type: ((haproxy_vm_type))
     stemcell: trusty
     networks:
     - name: default
