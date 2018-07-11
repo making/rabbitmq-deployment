@@ -11,6 +11,3 @@ tls.alternative_names:
 - "*.ap-northeast-1.elb.amazonaws.com"
 EOF) \
   --no-redact \
-
-
-#  -o ops-files/rabbitmq-add-haproxy.yml \

@@ -4,7 +4,7 @@ bosh -d rabbitmq deploy rabbitmq.yml \
   -o ops-files/rabbitmq-add-haproxy.yml \
   -o ops-files/rabbitmq-add-lb.yml \
   -l <(cat <<EOF
-haproxy_vm_type: deafault
+haproxy_vm_type: default
 rabbitmq_vm_type: default
 rabbitmq_disk_type: "5120"
 tls.common_name: rabbitmq.cf.internal

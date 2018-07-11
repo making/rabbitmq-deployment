@@ -1,5 +1,8 @@
 # Deploying RabbitMQ with BOSH
 
+
+## on AWS
+
 ```
 cp terraform.tfvars.sample terraform.tfvars
 ```
@@ -26,4 +29,10 @@ bosh update-cloud-config <(bosh cloud-config) \
 
 ```
 ./deploy-rabbitmq.sh
+```
+
+## on Laptop (BOSH-Lite)
+
+```
+./deploy-rabbitmq-lite.sh
 ```
