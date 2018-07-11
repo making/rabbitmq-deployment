@@ -197,3 +197,7 @@ output "rabbitmq_lb_name" {
 output "rabbitmq_lb_dns_name" {
   value = "${aws_elb.rabbitmq.dns_name}"
 }
+
+output "rabbitmq_security_group" {
+  value = "${aws_security_group.rabbitmq.id}"
+}
