@@ -1,5 +1,5 @@
 - type: replace
-  path: /vm_extensions?/-
+  path: /vm_extensions/name=rabbitmq-lb?
   value:
     name: rabbitmq-lb
     cloud_properties:
