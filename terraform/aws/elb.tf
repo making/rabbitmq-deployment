@@ -18,6 +18,11 @@ variable "vpc_id" {
   type = "string"
 }
 
+variable "vpc_cidr" {
+  type    = "string"
+  default = "10.0.0.0/16"
+}
+
 variable "elb_subnet_ids" {
   type = "list"
 }
@@ -116,6 +121,16 @@ resource "aws_security_group_rule" "outbound" {
   to_port     = 0
   protocol    = "-1"
   cidr_blocks = ["0.0.0.0/0"]
+
+  security_group_id = "${aws_security_group.rabbitmq.id}"
+}
+
+resource "aws_security_group_rule" "internal" {
+  type        = "ingress"
+  from_port   = 0
+  to_port     = 0
+  protocol    = "-1"
+  cidr_blocks = ["${var.vpc_cidr}"]
 
   security_group_id = "${aws_security_group.rabbitmq.id}"
 }
