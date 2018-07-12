@@ -1,0 +1,3 @@
+- type: replace
+  path: /instance_groups/name=rabbitmq-server/vm_extensions?/-
+  value: spot-instance-t2.micro
