@@ -1,5 +1,6 @@
 #!/bin/bash
 bosh -d rabbitmq deploy rabbitmq.yml \
+  -o ops-files/version/cf-rabbitmq-v249.0.0.yml \
   -o ops-files/rabbitmq-enable-tls.yml \
   -o ops-files/rabbitmq-enable-management-tls.yml \
   -o ops-files/rabbitmq-add-lb.yml \

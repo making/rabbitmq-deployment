@@ -2,10 +2,8 @@
 name: rabbitmq
 
 releases:
-- name: "cf-rabbitmq"
-  version: "249.0.0"
-  url: "https://bosh.io/d/github.com/pivotal-cf/cf-rabbitmq-release?v=249.0.0"
-  sha1: "89a3b1276a2ff354b69368c7de65a121b223ecf4"
+- name: cf-rabbitmq
+  version: latest
 
 stemcells:
 - alias: trusty
@@ -17,7 +15,7 @@ features:
 
 instance_groups:
 - name: rabbitmq-server
-  instances: 3
+  instances: 1
   jobs:
   - name: rabbitmq-server
     release: cf-rabbitmq
@@ -38,7 +36,7 @@ instance_groups:
         - 15671 # Management dashboard SSL
         - 15672 # Management dashboard
         - 15674 # Web STOMP
-        disk_alarm_threshold: "{mem_relative,0.4}"
+        disk_alarm_threshold: "{mem_relative,1.5}"
         administrators:
           management:
             username: admin
