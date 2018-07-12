@@ -1,6 +1,7 @@
 - type: replace
   path: /releases/name=cf-rabbitmq
   value:
+    name: cf-rabbitmq
     version: "250.0.0"
     url: "https://bosh.io/d/github.com/pivotal-cf/cf-rabbitmq-release?v=250.0.0"
     sha1: "29381c5313b8cf18bd576d2cc7314905b91b7e73"

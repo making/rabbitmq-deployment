@@ -15,7 +15,7 @@ features:
 
 instance_groups:
 - name: rabbitmq-server
-  instances: 1
+  instances: 3
   jobs:
   - name: rabbitmq-server
     release: cf-rabbitmq
@@ -36,7 +36,7 @@ instance_groups:
         - 15671 # Management dashboard SSL
         - 15672 # Management dashboard
         - 15674 # Web STOMP
-        disk_alarm_threshold: "{mem_relative,1.5}"
+        disk_alarm_threshold: "{mem_relative,0.4}"
         administrators:
           management:
             username: admin
