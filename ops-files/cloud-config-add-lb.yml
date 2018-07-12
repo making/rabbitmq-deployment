@@ -5,5 +5,3 @@
     cloud_properties:
       elbs:
       - ((rabbitmq_lb_name))
-      security_groups:
-      - ((rabbitmq_security_group))
