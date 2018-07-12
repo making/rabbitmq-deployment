@@ -1,0 +1,22 @@
+# bosh update-cloud-config <(bosh cloud-config) -o ops-files/cloud-config-spot-instance.yml
+- type: replace
+  path: /vm_extensions?/name=spot-instance-t2.micro?
+  value:
+    name: spot-instance-t2.micro
+    cloud_properties:
+      spot_bid_price: 0.0047
+      spot_ondemand_fallback: true
+- type: replace
+  path: /vm_extensions?/name=spot-instance-t2.small
+  value:
+    name: spot-instance-t2.small
+    cloud_properties:
+      spot_bid_price: 0.0092
+      spot_ondemand_fallback: true
+- type: replace
+  path: /vm_extensions?/name=spot-instance-t2.medium
+  value:
+    name: spot-instance-t2.medium
+    cloud_properties:
+      spot_bid_price: 0.0183
+      spot_ondemand_fallback: true
