@@ -1,0 +1,19 @@
+# Hack
+
+- type: replace
+  path: /releases/name=os-conf?
+  value:
+    name: "os-conf"
+    version: "20"
+    url: "https://bosh.io/d/github.com/cloudfoundry/os-conf-release?v=20"
+    sha1: "42b1295896c1fbcd36b55bfdedfe86782b2c9fba"
+
+- type: replace
+  path: /instance_groups/name=rabbitmq-server/jobs/0:before
+  value:
+    name: pre-start-script
+    release: os-conf
+    properties:
+      script: |-
+        #!/bin/bash
+        sed -i 's|{port,15672},{ssl,false}|{port,15671},{ssl,true},{ssl_opts,[{cacertfile,\\"${script_dir}/../etc/cacert.pem\\"},{certfile,\\"${script_dir}/../etc/cert.pem\\"},{keyfile,\\"${script_dir}/../etc/key.pem\\"}]}|g' /var/vcap/jobs/rabbitmq-server/bin/setup.sh

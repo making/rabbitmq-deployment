@@ -35,6 +35,7 @@ instance_groups:
         - 8883 # MQTT SSL
         - 61613 # STOMP
         - 61614 # STOMP SSL
+        - 15671 # Management dashboard SSL
         - 15672 # Management dashboard
         - 15674 # Web STOMP
         disk_alarm_threshold: "{mem_relative,0.4}"

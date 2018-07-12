@@ -83,6 +83,13 @@ resource "aws_elb" "rabbitmq" {
   }
 
   listener {
+    instance_port     = 15671
+    instance_protocol = "tcp"
+    lb_port           = 15672
+    lb_protocol       = "tcp"
+  }
+
+  listener {
     instance_port     = 15674
     instance_protocol = "tcp"
     lb_port           = 15674
@@ -177,6 +184,16 @@ resource "aws_security_group_rule" "ManagementDashboard" {
   type        = "ingress"
   from_port   = 15672
   to_port     = 15672
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+
+  security_group_id = "${aws_security_group.rabbitmq.id}"
+}
+
+resource "aws_security_group_rule" "ManagementDashboardSSL" {
+  type        = "ingress"
+  from_port   = 15671
+  to_port     = 15671
   protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
 
