@@ -85,7 +85,7 @@ resource "aws_elb" "rabbitmq" {
   listener {
     instance_port     = 15671
     instance_protocol = "tcp"
-    lb_port           = 15672
+    lb_port           = 15671
     lb_protocol       = "tcp"
   }
 
